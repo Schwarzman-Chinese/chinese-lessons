@@ -8,24 +8,36 @@ const iconPause = "⏸";
 function togglePlay(button){
   const src = button.getAttribute("data-audio");
   if (!src) return;
+
+  // 点同一个按钮 → 暂停
   if (currentAudio && currentButton === button){
     currentAudio.pause();
-    button.innerHTML = iconPlay();
-    currentAudio = null; currentButton = null;
+    button.textContent = iconPlay;
+    currentAudio = null;
+    currentButton = null;
     return;
   }
+
+  // 有别的在播 → 停止并重置
   if (currentAudio){
     currentAudio.pause();
     currentAudio.currentTime = 0;
-    if (currentButton) currentButton.innerHTML = iconPlay();
+    if (currentButton) currentButton.textContent = iconPlay;
   }
+
+  // 播放新的
   const audio = new Audio(src);
-  button.innerHTML = iconPause();
+  button.textContent = iconPause;
   audio.play();
+
   audio.addEventListener("ended", ()=>{
-    button.innerHTML = iconPlay();
-    if (currentAudio === audio){ currentAudio = null; currentButton = null; }
+    button.textContent = iconPlay;
+    if (currentAudio === audio){
+      currentAudio = null;
+      currentButton = null;
+    }
   });
+
   currentAudio = audio;
   currentButton = button;
 }
@@ -33,7 +45,7 @@ function togglePlay(button){
 // 让 JSON 注入的 HTML 里的 onclick 能用
 window.togglePlay = togglePlay;
 
-// ========== 加载器 ==========
+// ========== 工具 ==========
 function getParam(name){
   const url = new URL(window.location.href);
   return url.searchParams.get(name);
@@ -45,6 +57,7 @@ function setParam(name, value){
   history.replaceState({}, "", url.toString());
 }
 
+// ========== 加载目录与课文 ==========
 async function loadIndex(){
   const res = await fetch("data/index.json", { cache: "no-store" });
   if (!res.ok) throw new Error("无法加载 index.json");
@@ -87,7 +100,7 @@ async function loadLesson(id){
   // 标题（含可选的标题音频）
   const titleEl = document.getElementById("title");
   titleEl.innerHTML = `${data.title || id}
-    ${data.title_audio ? `<button class="play-button" onclick="togglePlay(this)" data-audio="${data.title_audio}">${iconPlay()}</button>` : ""}`;
+    ${data.title_audio ? `<button class="play-button" onclick="togglePlay(this)" data-audio="${data.title_audio}">${iconPlay}</button>` : ""}`;
 
   // 正文（允许 <p>、<img>、.vocab + .tooltip、播放按钮等）
   document.getElementById("content").innerHTML = data.content_html || "";
@@ -96,6 +109,7 @@ async function loadLesson(id){
   renderVocabTable(data.vocab || []);
 }
 
+// ========== 入口 ==========
 (async function init(){
   try{
     const lessons = await loadIndex();
