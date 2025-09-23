@@ -2,24 +2,37 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>课文合集</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>课程阅读 | 中文高级</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="page-header">
-    <div class="page-header-content">
-      <h1 id="site-title">课文合集</h1>
-      <select id="lesson-select" title="选择课文"></select>
+  <div class="page-header">
+    <div class="brand">清华大学苏世民书院 · 401 高级汉语课</div>
+    <div class="lesson-switch">
+      <label for="lessonSelect">选择课文：</label>
+      <select id="lessonSelect"></select>
     </div>
-  </header>
+  </div>
 
-  <main id="app" class="container">
-    <!-- 内容由 script.js 渲染 -->
+  <div class="layout">
+  <!-- 左侧：正文（放在前面就会在左侧） -->
+  <main class="main-text">
+    <h1 id="title"></h1>
+    <div id="content"></div>
   </main>
 
-  <!-- 复用一个播放器，避免多音轨冲突 -->
-  <audio id="player" preload="none"></audio>
+  <!-- 右侧：生词表 -->
+  <aside class="sidebar">
+    <h3>生词表</h3>
+    <table id="vocabTable" class="vocab">
+      <thead>
+        <tr><th>汉字</th><th>拼音</th><th>英文释义</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </aside>
+</div>
 
   <script src="script.js"></script>
 </body>
