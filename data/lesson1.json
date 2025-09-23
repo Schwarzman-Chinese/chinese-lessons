@@ -31,13 +31,6 @@
       "audio": "audio/ANSHAN1p7.mp3"
     }
   ],
-  "images": [
-    { "src": "https://p1.itc.cn/q_70/images03/20231214/1307a365fa1a4769bf8d6b71ccd01125.png", "alt": "胜利广场" },
-    { "src": "https://inews.gtimg.com/om_bt/OJbMVm5Vbj-RQjh19vRYctVV4tqv0x-93o7KedUfONuYEAA/641", "alt": "鞍山站前" },
-    { "src": "https://inews.gtimg.com/om_bt/Ohc8ZZd1ljjkRRJAKMVwnP9B2bJMX7dP4KGtASOK3btB8AA/641", "alt": "胜利广场环岛" },
-    { "src": "https://inews.gtimg.com/om_bt/OP5GLylvAhSGw5I1vXgvTwb4A9zzwk1R7RLWq0wBwlRdMAA/641", "alt": "焦耐院" },
-    { "src": "https://inews.gtimg.com/om_bt/OzGna6vyHOkadYVYkunH9EoK_BUSsEG8UsgStUymgE4xoAA/641", "alt": "台町住宅" }
-  ],
   "vocab": [
     { "hz": "鞍山", "py": "Ān shān", "en": "Anshan (steel city in Liaoning, China)" },
     { "hz": "洛杉矶", "py": "luò shān jī", "en": "Los Angeles" },
@@ -54,5 +47,48 @@
     { "hz": "俺", "py": "ǎn", "en": "I; me (dialect)" },
     { "hz": "鄙视", "py": "bǐ shì", "en": "despise; look down on" },
     { "hz": "内味儿", "py": "nèi wèir", "en": "that kind of vibe (colloquial)" }
+    { "hz": "支", "py": "zhī", "en": "set up; put up" },
+    { "hz": "小摊", "py": "xiǎo tān", "en": "street stall" },
+    { "hz": "灰暗", "py": "huī àn", "en": "dim; gloomy" },
+    { "hz": "构成", "py": "gòu chéng", "en": "constitute; form" },
+    { "hz": "伪满", "py": "wěi mǎn", "en": "Manchukuo (Japanese established a puppet regime in Northeast China from 1932 to 1945, under the rule of the former Qing Emperor, Aisin Gioro Puyi)" },
+    { "hz": "时期", "py": "shí qī", "en": "period; phase" },
+    { "hz": "规划", "py": "guī huà", "en": "plan; layout" },
+    { "hz": "尽头", "py": "jìn tóu", "en": "end; extremity" },
+    { "hz": "围绕", "py": "wéi rào", "en": "surround; revolve around" },
+    { "hz": "行政机关", "py": "xíng zhèng jī guān", "en": "administrative agency" },
+    { "hz": "类似", "py": "lèi sì", "en": "similar" },
+  { "hz": "引人瞩目", "py": "yǐn rén zhǔ mù", "en": "attract people's attention" },
+  { "hz": "绕口", "py": "rào kǒu", "en": "tongue-twisting" },
+  { "hz": "全称", "py": "quán chēng", "en": "full name" },
+  { "hz": "焦化", "py": "jiāo huà", "en": "coking" },
+  { "hz": "耐火", "py": "nài huǒ", "en": "refractory" },
+  { "hz": "唯一", "py": "wéi yī", "en": "only; sole" },
+  { "hz": "援建", "py": "yuán jiàn", "en": "aid in construction" },
+  { "hz": "落成", "py": "luò chéng", "en": "to be completed (building/project)" },
+  { "hz": "社交媒体", "py": "shè jiāo méi tǐ", "en": "social media" },
+  { "hz": "网红", "py": "wǎng hóng", "en": "internet celebrity" },
+  { "hz": "地势", "py": "dì shì", "en": "terrain" },
+  { "hz": "町", "py": "tǐng", "en": "Japanese word for town/district" },
+  { "hz": "沿袭", "py": "yán xí", "en": "follow (old practices)" },
+  { "hz": "坡顶", "py": "pō dǐng", "en": "hilltop" },
+  { "hz": "延伸", "py": "yán shēn", "en": "extend; stretch" },
+  { "hz": "扇形", "py": "shàn xíng", "en": "fan-shaped" },
+  { "hz": "布局", "py": "bù jú", "en": "layout" },
+  { "hz": "仿效", "py": "fǎng xiào", "en": "imitate; emulate" },
+  { "hz": "住宅区", "py": "zhù zhái qū", "en": "residential area" },
+  { "hz": "幽静", "py": "yōu jìng", "en": "quiet and secluded" },
+  { "hz": "昭和", "py": "zhāo hé", "en": "Shōwa (Japanese era name)" },
+  { "hz": "高管", "py": "gāo guǎn", "en": "senior executive" },
+  { "hz": "各异", "py": "gè yì", "en": "different; diverse" },
+  { "hz": "别墅", "py": "bié shù", "en": "villa" },
+  { "hz": "审美", "py": "shěn měi", "en": "aesthetic" },
+  { "hz": "居高临下", "py": "jū gāo lín xià", "en": "command from a high position" },
+  { "hz": "优越感", "py": "yōu yuè gǎn", "en": "sense of superiority" },
+  { "hz": "省级", "py": "shěng jí", "en": "provincial-level" },
+  { "hz": "申报", "py": "shēn bào", "en": "apply for; declare" },
+  { "hz": "官方", "py": "guān fāng", "en": "official" },
+  { "hz": "发布稿", "py": "fā bù gǎo", "en": "press release" }
+
   ]
 }
