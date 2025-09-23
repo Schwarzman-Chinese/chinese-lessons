@@ -1,40 +1,127 @@
-:root { --text:#111; --muted:#666; --border:#ddd; }
-*{ box-sizing:border-box; }
+/* 基础 */
+* { box-sizing: border-box; }
 body{
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  color:var(--text); margin:0; line-height:1.75; background:#fff;
+  font-family: "微软雅黑", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0;
+  color: #111;
+  background: #fff;
 }
-.page-header{ border-bottom:2px solid var(--border); padding:12px 16px; }
-.page-header-content{ display:flex; align-items:center; gap:12px; }
-#lesson-select{ padding:6px 8px; font-size:14px; }
-.container{ max-width:760px; margin:24px auto; padding:0 16px; }
-h1,h2{ line-height:1.3; margin:14px 0; }
-p{ text-indent:2em; margin:1em 0; }
-.vocab{ color:#1C90BA; position:relative; border-bottom:1px dashed #1C90BA; cursor:help; }
-.vocab .tooltip{
-  visibility:hidden; position:absolute; left:0; top:1.8em; z-index:10;
-  background:#f5f5f5; color:#000; font-size:14px; padding:4px 8px; border-radius:6px;
-  box-shadow:0 2px 8px rgba(0,0,0,.15); white-space:nowrap;
+.page-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 2px solid #e5e5e5;
+  background: #fafafa;
+}
+.page-header .brand{ font-weight: 600; }
+.lesson-switch label{ margin-right: 6px; }
+
+/* 布局 */
+.layout{
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.main-text{
+  flex: 2;
+  min-width: 0;
+  padding-right: 8px;
+}
+.sidebar{
+  flex: 1;
+  max-height: calc(100vh - 90px);
+  overflow: auto;
+  border-left: 2px solid #eee;  /* 改成左边框 */
+  padding-left: 12px;           /* 改成左内边距 */
+}
+
+/* 正文 */
+h1{
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin: 12px 0 8px;
+}
+p{
+  text-indent: 2em;
+  margin: 1em 0;
+}
+img{
+  display:block;
+  margin: 12px auto;
+  max-width: 100%;
+  width: 80%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* 生词表 */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .95em;
+}
+th, td{
+  border: 1px solid #dcdcdc;
+  padding: 6px 8px;
+  text-align: center;
+}
+th{ background: #f5f5f5; font-weight: 600; }
+
+/* 正文里的蓝色划线词 tooltip */
+.vocab{
+  color:#1C90BA;
+  position:relative;
+  cursor:pointer;
+  border-bottom:1px dashed #1C90BA;
+}
+.tooltip{
+  visibility:hidden;
+  background:#f0f0f0;
+  color:black;
+  text-align:left;
+  text-indent:0;
+  border-radius:5px;
+  padding:2px 10px;
+  position:absolute;
+  z-index:10;
+  top:1.5em; left:0;
+  box-shadow:0 0 5px rgba(0,0,0,.3);
+  font-size:14px;
+  white-space:nowrap;
+  min-width:max-content;
+  max-width:300px;
 }
 .vocab:hover .tooltip{ visibility:visible; }
 
-img{ display:block; margin:15px auto; max-width:100%; width:80%; height:auto; border-radius:4px; }
-
-.play-button{
-  margin-left:10px; border:none; border-radius:6px; padding:6px 10px; cursor:pointer;
-  background:#a8a6a6; color:#fff; font-size:14px;
+/* 播放按钮 */
+.play-button {
+  width:28px; height:28px;
+  border:none; border-radius:6px;
+  background-color:#a8a6a6; color:white;
+  cursor:pointer; display:inline-flex;
+  justify-content:center; align-items:center;
+  margin-left:10px; vertical-align: middle;
 }
 .play-button:hover{ background:#666; }
+.play-button svg{ width:16px; height:16px; fill:white; }
 
-.note{ color:var(--muted); font-size:13px; }
-hr{ border:none; border-top:1px solid var(--border); margin:24px 0; }
-.header-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-
-/* 生词表（可选） */
-table { width:130%; border-collapse:collapse; margin: 2em auto; font-size: 1em; }
-th, td { border:1px solid #ccc; padding:2px 2px; text-align:center; color:black; }
-th { background:#f0f0f0; }
-table.vocab th, table.vocab td { padding:0 !important; }
-table.vocab th:nth-child(3), table.vocab td:nth-child(3){
-  width:500px; max-width:500px; white-space:normal; word-break:break-word; overflow-wrap:anywhere;
+/* 移动端 */
+@media (max-width: 900px){
+  .layout{ flex-direction: column; }
+  .sidebar{
+    max-height: none;
+    border-left: none;
+    border-top: 2px solid #eee;
+    padding-left: 0;
+    padding-top: 12px;
+  }
+  img{ width:100%; }
 }
