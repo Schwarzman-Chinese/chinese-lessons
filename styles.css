@@ -113,17 +113,30 @@ th{ background: #f5f5f5; font-weight: 600; }
 .play-button:hover{ background:#666; }
 .play-button svg{ width:16px; height:16px; fill:white; }
 
-.site-logo {
-  position: fixed;   /* 固定位置 */
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
+/* 页眉整体：左右排布 */
+.page-header {
+  display: flex;
+  justify-content: space-between; /* 左右两边分开 */
+  align-items: center;            /* 垂直居中 */
+  border-bottom: 2px solid #ccc;
+  padding: 10px 20px;
+  background: #f9f9f9;
 }
 
-.site-logo img {
-  width: 60px;      /* 大小可调 */
-  height: auto;
-  border-radius: 50%;  /* 圆角，如果想要圆形 logo */
+/* 左边的 logo + 标题：横向排布 */
+.page-header .brand {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* logo 图片缩小并加间距 */
+.page-header .logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;  /* 圆形 logo */
+  margin-right: 10px;
 }
 
 
