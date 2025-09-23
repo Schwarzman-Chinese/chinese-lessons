@@ -113,6 +113,20 @@ th{ background: #f5f5f5; font-weight: 600; }
 .play-button:hover{ background:#666; }
 .play-button svg{ width:16px; height:16px; fill:white; }
 
+.site-logo {
+  position: fixed;   /* 固定位置 */
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+.site-logo img {
+  width: 60px;      /* 大小可调 */
+  height: auto;
+  border-radius: 50%;  /* 圆角，如果想要圆形 logo */
+}
+
+
 /* 移动端 */
 @media (max-width: 900px){
   .layout{ flex-direction: column; }
