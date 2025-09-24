@@ -44,8 +44,7 @@
 
   function posToPercent(clientX){
     const rect = root.getBoundingClientRect();
-    const percent = ((clientX - rect.left) / rect.width) * 100;
-    return percent;
+    return ((clientX - rect.left) / rect.width) * 100;
   }
 
   function onMove(e){
@@ -60,8 +59,6 @@
   divider.addEventListener('mousedown', (e)=>{
     dragging = true;
     root.classList.add('is-dragging');
-    // 捕获指针，提升稳定性
-    divider.setPointerCapture?.(e.pointerId || 1);
     e.preventDefault();
   });
   window.addEventListener('mouseup',   ()=>{
@@ -72,9 +69,20 @@
   window.addEventListener('mousemove', onMove);
 
   // 触屏拖动
-  divider.addEventListener('touchstart', ()=>{ dragging = true; root.classList.add('is-dragging'); }, {passive:true});
-  window.addEventListener('touchend',    ()=>{ if (!dragging) return; dragging = false; root.classList.remove('is-dragging'); }, {passive:true});
-  window.addEventListener('touchcancel', ()=>{ if (!dragging) return; dragging = false; root.classList.remove('is-dragging'); }, {passive:true});
+  divider.addEventListener('touchstart', ()=>{
+    dragging = true;
+    root.classList.add('is-dragging');
+  }, {passive:true});
+  window.addEventListener('touchend',    ()=>{
+    if (!dragging) return;
+    dragging = false;
+    root.classList.remove('is-dragging');
+  }, {passive:true});
+  window.addEventListener('touchcancel', ()=>{
+    if (!dragging) return;
+    dragging = false;
+    root.classList.remove('is-dragging');
+  }, {passive:true});
   window.addEventListener('touchmove',   onMove, {passive:false});
 
   // 双击恢复默认
@@ -219,15 +227,17 @@ function renderContentNewFormat(data){
       para.appendChild(btn);
     }
     contentEl.appendChild(para);
-    if (p.image) {
-  const img = document.createElement("img");
-  img.src = p.image.src;
-  img.alt = p.image.alt || "";
-  img.className = "para-img";   // 给它一个 class 方便样式
-  contentEl.appendChild(img);
-}
 
-    // 指定 after 的图片插在该段落后
+    // 段落专属图片（方案 1）
+    if (p.image) {
+      const img = document.createElement("img");
+      img.src = p.image.src;
+      img.alt = p.image.alt || "";
+      img.className = "para-img";   // 用 CSS 控制大小
+      contentEl.appendChild(img);
+    }
+
+    // 指定 after 的图片（方案 2）
     images
       .filter(img => Number.isInteger(img.after) && img.after === (idx + 1))
       .forEach(img => {
