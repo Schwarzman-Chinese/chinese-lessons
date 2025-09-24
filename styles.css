@@ -1,5 +1,7 @@
 /* 基础 */
 * { box-sizing: border-box; }
+html, body { height: 100%; }
+:root { --header-h: 72px; }          /* 按你的页眉实际高度微调 */
 body{
   font-family: "微软雅黑", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
   font-size: 18px;
@@ -16,9 +18,9 @@ body{
   justify-content: space-between;
   gap: 12px;
   padding: 12px 16px;
-  background: #012E4F;      /* 深蓝背景 */
+  background: #012E4F;
   border-bottom: none;
-  color: #fff;              /* 页眉中文字白色 */
+  color: #fff;
 }
 .page-header .brand{
   display: flex;
@@ -33,9 +35,8 @@ body{
 }
 .page-header .lesson-switch label{
   margin-right: 0;
-  color: #fff;              /* label 白色 */
+  color: #fff;
 }
-/* 深色页眉里的下拉选择样式（兼容浅色页面） */
 .page-header .lesson-switch select{
   color: #fff;
   background: rgba(255,255,255,0.12);
@@ -45,7 +46,6 @@ body{
   outline: none;
 }
 .page-header .lesson-switch select:focus{ border-color: #fff; }
-/* 下拉展开的选项仍用深色字，避免看不清 */
 .page-header .lesson-switch select option{
   color: #111;
   background: #fff;
@@ -64,32 +64,83 @@ body{
 .layout{
   display: flex;
   align-items: stretch;
-  gap: 0;                       /* 中间由 .divider 控制间距 */
+  gap: 0;                             /* 中间由 .divider 控制间距 */
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 16px;                    /* 上下去 padding，避免双滚动条 */
+  height: calc(100vh - var(--header-h));
 }
 
 /* 两个面板容器（左正文 / 右生词表） */
 .pane{
-  overflow: auto;
-  padding: 0 12px;
-  min-width: 0;                 /* 允许面板在 flex 下收缩 */
+  overflow: auto;                     /* 各自上下滚动 */
+  padding: 12px;
+  min-width: 0;                       /* 允许面板在 flex 下收缩 */
 }
 
 /* 初始宽度比例（JS 会覆盖/记忆这个比例） */
-.text{  flex: 0 0 62%; min-width: 280px; }
-.vocab{ flex: 0 0 38%; min-width: 240px; }
+.text  { flex: 0 0 62%; min-width: 280px; }
+.vocab { flex: 0 0 38%; min-width: 240px; }
 
-/* 中间可拖动的分隔线 */
+/* 中间可拖动的分隔线 + 可视化把手 */
 .divider{
-  width: 6px;                   /* 抓手更容易点到 */
-  background: #ddd;
+  position: relative;
+  width: 12px;                        /* 命中区域更好抓 */
   cursor: col-resize;
   user-select: none;
 }
-.divider:hover{  background:#cfcfcf; }
-.divider:active{ background:#bbb; }
+.divider::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;                         /* 视觉上的细线 */
+  transform: translateX(-50%);
+  background: #ddd;
+  transition: background .15s ease;
+}
+.divider:hover::before  { background:#cfcfcf; }
+.divider:active::before { background:#bbb; }
+
+/* 把手（三道横线） */
+.divider .grip{
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 10px; height: 24px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  pointer-events: none;               /* 鼠标事件仍给 divider */
+}
+.divider .grip::before,
+.divider .grip::after{
+  content: "";
+  display: block;
+  height: 2px;
+  background: #bdbdbd;
+  border-radius: 1px;
+}
+.divider .grip::after{
+  box-shadow:
+    0 6px 0 #bdbdbd,                  /* 三条“齿”效果 */
+    0 -6px 0 #bdbdbd;
+}
+/* 键盘聚焦可见 */
+.divider:focus-visible::before{
+  background: #5aa0ff;
+}
+.divider:focus-visible .grip::before,
+.divider:focus-visible .grip::after{
+  background: #5aa0ff;
+  box-shadow:
+    0 6px 0 #5aa0ff,
+    0 -6px 0 #5aa0ff;
+}
+
+/* 拖动时整体禁用选择，体验更顺手（配合 JS 给 root 加 .is-dragging） */
+.is-dragging { cursor: col-resize; }
+.is-dragging * { user-select: none !important; }
 
 /* 正文 */
 h1{
@@ -120,6 +171,14 @@ th, td{
   text-align: center;
 }
 th{ background: #f5f5f5; font-weight: 600; }
+
+/* 生词表表头吸顶，滚动时更易看 */
+#vocabTable thead th{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f5f5f5;
+}
 
 /* 只把“生词表表格里的文字”设为黑色，不影响正文的 .vocab */
 #vocabTable th,
@@ -162,15 +221,25 @@ th{ background: #f5f5f5; font-weight: 600; }
 }
 .play-button:hover{ background:#666; }
 
-/* 移动端：上下布局，分隔线改为横条 */
+/* 移动端：上下布局，分隔线变横条 */
 @media (max-width: 900px){
-  .layout{ flex-direction: column; }
+  .layout{
+    flex-direction: column;
+    height: auto;                     /* 竖屏堆叠时不要固定高度 */
+    padding: 16px;
+  }
   .divider{
     width: 100%;
-    height: 6px;
+    height: 10px;
     cursor: row-resize;
-    background: #eee;
-    margin: 8px 0;
+  }
+  .divider::before{
+    left: 0; right: 0; top: 50%;
+    height: 2px; width: auto;
+    transform: translateY(-50%);
+  }
+  .divider .grip{
+    width: 24px; height: 10px;
   }
   .text, .vocab{ flex: 1 1 auto; min-width: auto; }
   img{ width:100%; }
