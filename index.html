@@ -28,12 +28,16 @@
         <div id="content"></div>
       </section>
 
-      <!-- 中间：可拖动的分隔线 -->
-      <div class="divider" id="split-divider"
-           role="separator"
-           aria-orientation="vertical"
-           aria-label="调整左右宽度"
-           tabindex="0"></div>
+      <!-- 中间：可拖动的分隔线（带把手） -->
+      <div
+        class="divider"
+        id="split-divider"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="调整左右宽度"
+        tabindex="0">
+        <span class="grip" aria-hidden="true"></span>
+      </div>
 
       <!-- 右侧：生词表面板 -->
       <aside id="vocab-pane" class="pane vocab">
@@ -52,5 +56,6 @@
   <audio id="player" preload="none"></audio>
 
   <script src="script.js"></script>
+  <noscript>需要启用 JavaScript 才能正常使用本页面。</noscript>
 </body>
 </html>
