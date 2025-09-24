@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- 头部：品牌 + 课文选择 -->
   <div class="page-header">
     <div class="brand">
       <img class="logo" src="https://pbs.twimg.com/profile_images/1679625189951262720/t0pVlMOA_400x400.png" alt="Logo">
@@ -18,24 +19,37 @@
     </div>
   </div>
 
-  <div class="layout">
-    <!-- 左侧：正文 -->
-    <main class="main-text">
-      <h1 id="title"></h1>
-      <div id="content"></div>
-    </main>
+  <!-- 可拖动分栏：左正文 | 中分隔线 | 右生词表 -->
+  <main class="container">
+    <div class="layout" id="split-root">
+      <!-- 左侧：正文面板 -->
+      <section id="text-pane" class="pane text">
+        <h1 id="title"></h1>
+        <div id="content"></div>
+      </section>
 
-    <!-- 右侧：生词表 -->
-    <aside class="sidebar">
-      <h3>生词表</h3>
-      <table id="vocabTable" class="vocab">
-        <thead>
-          <tr><th>汉字</th><th>拼音</th><th>英文释义</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </aside>
-  </div>
+      <!-- 中间：可拖动的分隔线 -->
+      <div class="divider" id="split-divider"
+           role="separator"
+           aria-orientation="vertical"
+           aria-label="调整左右宽度"
+           tabindex="0"></div>
+
+      <!-- 右侧：生词表面板 -->
+      <aside id="vocab-pane" class="pane vocab">
+        <h3>生词表</h3>
+        <table id="vocabTable" class="vocab">
+          <thead>
+            <tr><th>汉字</th><th>拼音</th><th>英文释义</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </aside>
+    </div>
+  </main>
+
+  <!-- 复用的音频播放器（JS 控制） -->
+  <audio id="player" preload="none"></audio>
 
   <script src="script.js"></script>
 </body>
