@@ -1,4 +1,4 @@
-// ========== 1) Split-Pane 可拖动分栏 ==========
+// ========== 1) Split-Pane 可拖动分栏（含把手/无障碍/双击重置） ==========
 (function initSplitPane(){
   const root    = document.getElementById('split-root');
   const left    = document.getElementById('text-pane');
@@ -6,46 +6,94 @@
   const divider = document.getElementById('split-divider');
   if (!root || !left || !right || !divider) return;
 
+  // 如果 HTML 里没放 grip，把手自动补齐
+  if (!divider.querySelector('.grip')) {
+    const grip = document.createElement('span');
+    grip.className = 'grip';
+    grip.setAttribute('aria-hidden', 'true');
+    divider.appendChild(grip);
+  }
+
   const KEY = 'splitPercent';
+  const MIN = 25;   // 左栏最小百分比
+  const MAX = 80;   // 左栏最大百分比
+  const DEFAULT = 62;
+
   const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
 
-  function applyPercent(p){
-    p = clamp(p, 25, 80);                // 左栏限制在 25%~80%
+  // 无障碍属性
+  divider.setAttribute('role', 'separator');
+  divider.setAttribute('aria-orientation', 'vertical');
+  divider.setAttribute('aria-valuemin', String(MIN));
+  divider.setAttribute('aria-valuemax', String(MAX));
+  divider.tabIndex = divider.tabIndex || 0;
+
+  function applyPercent(p, {persist=true} = {}){
+    p = clamp(p, MIN, MAX);
     left.style.flex  = `0 0 ${p}%`;
     right.style.flex = `0 0 ${100 - p}%`;
-    localStorage.setItem(KEY, String(p));
+    divider.setAttribute('aria-valuenow', String(Math.round(p)));
+    divider.title = `左右比例：${Math.round(p)}% / ${Math.round(100 - p)}%`;
+    if (persist) localStorage.setItem(KEY, String(p));
   }
 
   const saved = parseFloat(localStorage.getItem(KEY));
-  applyPercent(Number.isFinite(saved) ? saved : 62);
+  applyPercent(Number.isFinite(saved) ? saved : DEFAULT, {persist:false});
 
   let dragging = false;
 
+  function posToPercent(clientX){
+    const rect = root.getBoundingClientRect();
+    const percent = ((clientX - rect.left) / rect.width) * 100;
+    return percent;
+  }
+
   function onMove(e){
     if (!dragging) return;
-    const rect = root.getBoundingClientRect();
     const x = (e.touches && e.touches[0]?.clientX) ?? e.clientX;
     if (typeof x !== 'number') return;
-    const percent = ((x - rect.left) / rect.width) * 100;
-    applyPercent(percent);
+    applyPercent(posToPercent(x));
     e.preventDefault();
   }
 
-  divider.addEventListener('mousedown', ()=>{ dragging = true; });
-  window.addEventListener('mouseup',   ()=>{ dragging = false; });
+  // 鼠标拖动
+  divider.addEventListener('mousedown', (e)=>{
+    dragging = true;
+    root.classList.add('is-dragging');
+    // 捕获指针，提升稳定性
+    divider.setPointerCapture?.(e.pointerId || 1);
+    e.preventDefault();
+  });
+  window.addEventListener('mouseup',   ()=>{
+    if (!dragging) return;
+    dragging = false;
+    root.classList.remove('is-dragging');
+  });
   window.addEventListener('mousemove', onMove);
 
-  // 触屏支持
-  divider.addEventListener('touchstart', ()=>{ dragging = true; }, {passive:true});
-  window.addEventListener('touchend',    ()=>{ dragging = false; }, {passive:true});
+  // 触屏拖动
+  divider.addEventListener('touchstart', ()=>{ dragging = true; root.classList.add('is-dragging'); }, {passive:true});
+  window.addEventListener('touchend',    ()=>{ if (!dragging) return; dragging = false; root.classList.remove('is-dragging'); }, {passive:true});
+  window.addEventListener('touchcancel', ()=>{ if (!dragging) return; dragging = false; root.classList.remove('is-dragging'); }, {passive:true});
   window.addEventListener('touchmove',   onMove, {passive:false});
 
-  // 键盘微调（可选）
+  // 双击恢复默认
+  divider.addEventListener('dblclick', ()=> applyPercent(DEFAULT));
+
+  // 键盘微调
   divider.addEventListener('keydown', (e)=>{
+    const cur = parseFloat(localStorage.getItem(KEY)) || DEFAULT;
     const step = (e.shiftKey ? 5 : 2);
-    const cur = parseFloat(localStorage.getItem(KEY)) || 62;
-    if (e.key === 'ArrowLeft')  applyPercent(cur - step);
-    if (e.key === 'ArrowRight') applyPercent(cur + step);
+    if (e.key === 'ArrowLeft')  { applyPercent(cur - step); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { applyPercent(cur + step); e.preventDefault(); }
+    if (e.key === 'Home')       { applyPercent(MIN);        e.preventDefault(); }
+    if (e.key === 'End')        { applyPercent(MAX);        e.preventDefault(); }
+  });
+
+  // 窗口缩放时，重新夹取一次，防止超界
+  window.addEventListener('resize', ()=>{
+    const cur = parseFloat(localStorage.getItem(KEY)) || DEFAULT;
+    applyPercent(cur, {persist:false});
   });
 })();
 
