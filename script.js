@@ -1,5 +1,56 @@
-// ========== 播放器：单实例播放 ==========
-let currentAudio = null;
+// ========== 1) Split-Pane 可拖动分栏 ==========
+(function initSplitPane(){
+  const root    = document.getElementById('split-root');
+  const left    = document.getElementById('text-pane');
+  const right   = document.getElementById('vocab-pane');
+  const divider = document.getElementById('split-divider');
+  if (!root || !left || !right || !divider) return;
+
+  const KEY = 'splitPercent';
+  const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+
+  function applyPercent(p){
+    p = clamp(p, 25, 80);                // 左栏限制在 25%~80%
+    left.style.flex  = `0 0 ${p}%`;
+    right.style.flex = `0 0 ${100 - p}%`;
+    localStorage.setItem(KEY, String(p));
+  }
+
+  const saved = parseFloat(localStorage.getItem(KEY));
+  applyPercent(Number.isFinite(saved) ? saved : 62);
+
+  let dragging = false;
+
+  function onMove(e){
+    if (!dragging) return;
+    const rect = root.getBoundingClientRect();
+    const x = (e.touches && e.touches[0]?.clientX) ?? e.clientX;
+    if (typeof x !== 'number') return;
+    const percent = ((x - rect.left) / rect.width) * 100;
+    applyPercent(percent);
+    e.preventDefault();
+  }
+
+  divider.addEventListener('mousedown', ()=>{ dragging = true; });
+  window.addEventListener('mouseup',   ()=>{ dragging = false; });
+  window.addEventListener('mousemove', onMove);
+
+  // 触屏支持
+  divider.addEventListener('touchstart', ()=>{ dragging = true; }, {passive:true});
+  window.addEventListener('touchend',    ()=>{ dragging = false; }, {passive:true});
+  window.addEventListener('touchmove',   onMove, {passive:false});
+
+  // 键盘微调（可选）
+  divider.addEventListener('keydown', (e)=>{
+    const step = (e.shiftKey ? 5 : 2);
+    const cur = parseFloat(localStorage.getItem(KEY)) || 62;
+    if (e.key === 'ArrowLeft')  applyPercent(cur - step);
+    if (e.key === 'ArrowRight') applyPercent(cur + step);
+  });
+})();
+
+// ========== 2) 播放器：单实例复用 ==========
+const player = document.getElementById('player');
 let currentButton = null;
 
 const iconPlay  = "▶︎";
@@ -9,43 +60,45 @@ function togglePlay(button){
   const src = button.getAttribute("data-audio");
   if (!src) return;
 
-  // 点同一个按钮 → 暂停
-  if (currentAudio && currentButton === button){
-    currentAudio.pause();
+  // 再次点同一个按钮：暂停
+  if (currentButton === button && !player.paused){
+    player.pause();
     button.textContent = iconPlay;
-    currentAudio = null;
     currentButton = null;
     return;
   }
 
-  // 有别的在播 → 停止并重置
-  if (currentAudio){
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    if (currentButton) currentButton.textContent = iconPlay;
+  // 切换按钮状态
+  if (currentButton && currentButton !== button) {
+    currentButton.textContent = iconPlay;
   }
-
-  // 播放新的
-  const audio = new Audio(src);
-  button.textContent = iconPause;
-  audio.play();
-
-  audio.addEventListener("ended", ()=>{
-    button.textContent = iconPlay;
-    if (currentAudio === audio){
-      currentAudio = null;
-      currentButton = null;
-    }
-  });
-
-  currentAudio = audio;
   currentButton = button;
+  button.textContent = iconPause;
+
+  // 切换音源并播放
+  const abs = new URL(src, location).href;
+  if (player.src !== abs) player.src = abs;
+  player.currentTime = 0;
+
+  player.play().catch(err=>{
+    console.error("播放失败:", err);
+    alert("音频播放失败：请检查路径或文件名。");
+    button.textContent = iconPlay;
+    currentButton = null;
+  });
 }
+
+player.addEventListener("ended", ()=>{
+  if (currentButton){ currentButton.textContent = iconPlay; currentButton = null; }
+});
+player.addEventListener("error", ()=>{
+  if (currentButton){ currentButton.textContent = iconPlay; currentButton = null; }
+});
 
 // 让 JSON 注入的 HTML 里的 onclick 能用
 window.togglePlay = togglePlay;
 
-// ========== 工具 ==========
+// ========== 3) 工具 ==========
 function getParam(name){
   const url = new URL(window.location.href);
   return url.searchParams.get(name);
@@ -57,7 +110,7 @@ function setParam(name, value){
   history.replaceState({}, "", url.toString());
 }
 
-// ========== 渲染函数 ==========
+// ========== 4) 渲染 ==========
 function renderVocabTable(vocab){
   const tbody = document.querySelector("#vocabTable tbody");
   if (!tbody) return;
@@ -74,7 +127,7 @@ function renderTitle(data, fallbackId){
   if (!titleEl) return;
 
   const title = data.title || fallbackId || "";
-  const audioSrc = data.title_audio || data.coverAudio; // 兼容两种命名
+  const audioSrc = data.title_audio || data.coverAudio;
 
   titleEl.innerHTML = title;
   if (audioSrc){
@@ -89,15 +142,12 @@ function renderTitle(data, fallbackId){
 }
 
 function renderContentOldFormat(data){
-  // 老格式： content_html 字符串（里可能自带 <p> / <img> / 按钮等）
   const contentEl = document.getElementById("content");
   if (!contentEl) return;
   contentEl.innerHTML = data.content_html || "";
-  // 若 content_html 里自己写了 <button onclick="togglePlay(this)"> 也可正常使用
 }
 
 function renderContentNewFormat(data){
-  // 新格式： paragraphs 数组 + images 可选
   const contentEl = document.getElementById("content");
   if (!contentEl) return;
   contentEl.innerHTML = "";
@@ -105,10 +155,11 @@ function renderContentNewFormat(data){
   const paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [];
   const images = Array.isArray(data.images) ? data.images : [];
 
-  // 先按段落渲染
   paragraphs.forEach((p, idx)=>{
     const para = document.createElement("p");
-    para.innerHTML = p.html || "";
+    // 允许内联 HTML（含 tooltip）
+    if (p.html) para.innerHTML = p.html;
+    else if (p.text) para.textContent = p.text;
 
     if (p.audio){
       const btn = document.createElement("button");
@@ -119,10 +170,9 @@ function renderContentNewFormat(data){
       para.appendChild(document.createTextNode(" "));
       para.appendChild(btn);
     }
-
     contentEl.appendChild(para);
 
-    // 如果有带 after 的图片，就插在指定段落后（1 开始计数）
+    // 指定 after 的图片插在该段落后
     images
       .filter(img => Number.isInteger(img.after) && img.after === (idx + 1))
       .forEach(img => {
@@ -133,7 +183,7 @@ function renderContentNewFormat(data){
       });
   });
 
-  // 其余（未指定 after）的图片，统一插到最后
+  // 其余图片统一插到最后
   images
     .filter(img => !Number.isInteger(img.after))
     .forEach(img => {
@@ -144,7 +194,7 @@ function renderContentNewFormat(data){
     });
 }
 
-// ========== 加载目录与课文 ==========
+// ========== 5) 加载目录与课文 ==========
 async function loadIndex(){
   const res = await fetch("data/index.json", { cache: "no-store" });
   if (!res.ok) throw new Error("无法加载 index.json");
@@ -176,26 +226,21 @@ async function loadLesson(id){
   if (!res.ok) throw new Error(`无法加载 ${id}.json`);
   const data = await res.json();
 
-  // 标题（兼容 coverAudio / title_audio）
   renderTitle(data, id);
 
-  // 内容（兼容新老两种格式）
   if (data.content_html){
-    // 老格式：整段 HTML
     renderContentOldFormat(data);
   }else if (data.paragraphs){
-    // 新格式：按段落 + 图片
     renderContentNewFormat(data);
   }else{
     const contentEl = document.getElementById("content");
     if (contentEl) contentEl.textContent = "（本课暂无内容）";
   }
 
-  // 生词表（两种格式都支持）
   renderVocabTable(data.vocab || []);
 }
 
-// ========== 入口 ==========
+// ========== 6) 入口 ==========
 (async function init(){
   try{
     const lessons = await loadIndex();
