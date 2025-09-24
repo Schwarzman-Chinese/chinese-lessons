@@ -31,13 +31,13 @@
     {
       "html": "焦耐院是当年苏联<span class=\"vocab\">援建<span class=\"tooltip\">yuán jiàn — aid in construction</span></span>的，1954年<span class=\"vocab\">落成<span class=\"tooltip\">luò chéng — to be completed (building/project)</span></span>时是鞍山最高楼。现在焦耐院搬到大连去了，而这栋楼现在却成了<span class=\"vocab\">社交媒体<span class=\"tooltip\">shè jiāo méi tǐ — social media</span></span>上的<span class=\"vocab\">网红<span class=\"tooltip\">wǎng hóng — internet celebrity</span></span>楼。",
       "audio": "audio/ANSHAN1p6.mp3",
-      "image": {
-      "src": "img/p6.png"}
+      "image": {"src": "img/p6.png"}
     },
     {
       "html": "鞍山市区<span class=\"vocab\">地势<span class=\"tooltip\">dì shì — terrain</span></span>西平东高，过了圆环再往东走，是鞍山居住环境最好的地区─台<span class=\"vocab\">町<span class=\"tooltip\">tǐng — Japanese word for town/district</span></span>。这个地名<span class=\"vocab\">沿袭<span class=\"tooltip\">yán xí — follow (old practices)</span></span>自日文，意思就是“高地街区”。这一带街道，以<span class=\"vocab\">坡顶<span class=\"tooltip\">pō dǐng — hilltop</span></span>为中心向下<span class=\"vocab\">延伸<span class=\"tooltip\">yán shēn — extend; stretch</span></span>，<span class=\"vocab\">扇形<span class=\"tooltip\">shàn xíng — fan-shaped</span></span><span class=\"vocab\">布局<span class=\"tooltip\">bù jú — layout</span></span>，<span class=\"vocab\">仿效<span class=\"tooltip\">fǎng xiào — imitate; emulate</span></span>美式<span class=\"vocab\">住宅区<span class=\"tooltip\">zhù zhái qū — residential area</span></span><span class=\"vocab\">规划<span class=\"tooltip\">guī huà — plan; layout</span></span>，极其<span class=\"vocab\">幽静<span class=\"tooltip\">yōu jìng — quiet and secluded</span></span>。",
-      "audio": "audio/ANSHAN1p7.mp3"
-    }
+      "audio": "audio/ANSHAN1p7.mp3",
+      "image": { "src": "img/p7.png" }
+    },
   ],
   "vocab": [
     { "hz": "鞍山", "py": "Ān shān", "en": "Anshan (steel city in Liaoning, China)" },
