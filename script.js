@@ -219,6 +219,13 @@ function renderContentNewFormat(data){
       para.appendChild(btn);
     }
     contentEl.appendChild(para);
+    if (p.image) {
+  const img = document.createElement("img");
+  img.src = p.image.src;
+  img.alt = p.image.alt || "";
+  img.className = "para-img";   // 给它一个 class 方便样式
+  contentEl.appendChild(img);
+}
 
     // 指定 after 的图片插在该段落后
     images
