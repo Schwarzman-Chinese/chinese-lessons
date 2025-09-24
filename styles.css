@@ -1,4 +1,4 @@
-/* 基础 */
+/* 基础 */ 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 :root { --header-h: 72px; }          /* 按你的页眉实际高度微调 */
@@ -185,6 +185,21 @@ th{ background: #f5f5f5; font-weight: 600; }
 /* 只把“生词表表格里的文字”设为黑色，不影响正文的 .vocab */
 #vocabTable th,
 #vocabTable td{ color: #111; }
+
+/* 让“汉字”和“拼音”在一行显示 */
+#vocabTable th:nth-child(1),
+#vocabTable td:nth-child(1),
+#vocabTable th:nth-child(2),
+#vocabTable td:nth-child(2){
+  white-space: nowrap;      /* 不换行 */
+  word-break: keep-all;
+}
+#vocabTable th:nth-child(1), #vocabTable td:nth-child(1){ min-width: 6em; }
+#vocabTable th:nth-child(2), #vocabTable td:nth-child(2){ min-width: 9em; }
+#vocabTable th:nth-child(3), #vocabTable td:nth-child(3){
+  white-space: normal;
+  word-break: break-word;
+}
 
 /* 正文里的蓝色划线词 + tooltip */
 .vocab{
