@@ -19,30 +19,22 @@
     </div>
   </div>
 
-  <!-- 可拖动分栏：左正文 | 中分隔线 | 右生词表 -->
+  <!-- 主体：先正文，再生词表（不再左右分栏） -->
   <main class="container">
-    <div class="layout" id="split-root">
-      <!-- 左侧：正文面板 -->
+    <div class="layout">
+      <!-- 正文 -->
       <section id="text-pane" class="pane text">
         <h1 id="title"></h1>
         <div id="content"></div>
       </section>
 
-      <!-- 中间：可拖动的分隔线（带把手） -->
-      <div
-        class="divider"
-        id="split-divider"
-        role="separator"
-        aria-orientation="vertical"
-        aria-label="调整左右宽度"
-        tabindex="0">
-        <span class="grip" aria-hidden="true"></span>
-      </div>
+      <!-- 分隔线 -->
+      <hr class="content-divider" />
 
-      <!-- 右侧：生词表面板 -->
-      <aside id="vocab-pane" class="pane vocab">
+      <!-- 生词表（移到下面） -->
+      <aside id="vocab-pane" class="vocab-section">
         <h3>生词表</h3>
-        <table id="vocabTable" class="vocab">
+        <table id="vocabTable" class="vocab-table">
           <thead>
             <tr><th>汉字</th><th>拼音</th><th>英文释义</th></tr>
           </thead>
