@@ -45,14 +45,14 @@ https://schwarzman-chinese.github.io/chinese-lessons/
 
 可以 **直接在 GitHub 网站上操作**，不需要安装任何软件。
 
-### 步骤 1️⃣：打开仓库
+### 步骤 1️：打开仓库
 进入github项目网页
 
-### 步骤 2️⃣：进入 `data/` 文件夹
+### 步骤 2️：进入 `data/` 文件夹
 点击 `data` 文件夹，会看到现有的课文文件，例如：
 lesson1.json
 
-### 步骤 3️⃣：新增一个课文文件
+### 步骤 3：新增一个课文文件
 1. 点击右上角 **“Add file → Create new file”**  
 2. 命名为：
 data/lesson？.json
@@ -81,16 +81,16 @@ data/lesson？.json
 
 4. 滚动到页面底部 → 点击 Commit new file（保存）
 
-## 五、更新目录文件 index.json
+### 步骤 4：更新目录文件 index.json
 修改 `index.json`，添加新课文的信息，然后保存即可。
 
-## 六、上传音频
+## 五、上传音频
 1. 打开 `audio/` 文件夹
 2. 点击 **Add file** → **Upload files**
 3. 上传 mp3 文件
 4. 在 JSON 课文中正确引用音频文件路径
 
-## 七、插入图片（可选）
+## 六、插入图片（可选）
 1. 打开 `img/` 文件夹
 2. 上传图片文件
 3. 在 JSON 段落中加入图片信息：
@@ -101,13 +101,13 @@ data/lesson？.json
 }
 ````
 
-## 八、：生词提示
+## 七、：生词提示
 生词表会自动显示拼音与英文释义。可在正文中手动标注（也可以问chatgpt/deepseek帮忙写）：
 ```html
 <span class="vocab-word" data-py="dì lǐ" data-en="geography">地理</span>
 ````
 
-## 九、常见问题
+## 八、常见问题
 
 **1. 新课文没显示**  
 → 检查是否已在 `index.json` 中添加该课程信息
@@ -118,12 +118,12 @@ data/lesson？.json
 **3. 样式没更新**  
 → 按 `Ctrl + F5` 刷新浏览器缓存
 
-## 十、学生访问方式
+## 九、学生访问方式
 
 学生只需访问以下网址：  
 `https://schwarzman-chinese.github.io/chinese-lessons/`
 
-## 十一、维护与支持
+## 十、维护与支持
 
 如网页加载或显示异常，可联系维护者：  
 **Bolor Gantumur 水晶**  
