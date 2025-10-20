@@ -1,0 +1,62 @@
+{
+  "id": "lesson5",
+  "title": "外卖骑手，困在系统里（二）",
+  "title_audio": "audio/qishou2-title.mp3",
+  "paragraphs": [
+    {
+      "html": "一位上海骑手说，自己几乎每单都会逆行，他算过，这样每次能节省5分钟。另一位上海的饿了么骑手则做过一个粗略的统计，如果不违章，他一天能跑的单数会减少一半。",
+      "audio": "audio/qishou2-1.mp3"
+    },
+    {
+      "html": "“骑手们永远也无法靠个人力量去对抗系统分配的时间，我们只能用超速去补救超时这件事。”一位美团骑手告诉《人物》，他经历过的“最疯狂一单”是1公里，20分钟，虽然距离不远，但他需要在20分钟内完成取餐、等餐、送餐，那天，他的车速快到“屁股几次从座位上弹起来”。",
+      "audio": "audio/qishou2-2.mp3"
+    },
+    {
+      "html": "超速、闯红灯、逆行……在中国社科院助理研究员孙萍看来，这些外卖骑手挑战交通规则的举动是一种“逆算法”，而这种“逆算法”的直接后果则是——外卖员遭遇交通事故的数量急剧上升。",
+      "audio": "audio/qishou2-3.mp3"
+    },
+    {
+      "html": "孙萍从2017年开始研究外卖系统算法与骑手之间的数字劳动关系，在与《人物》的交流中，谈及配送时间缩短的影响时，她表示，“这肯定是骑手们发生交通事故越来越多最重要的原因。”",
+      "audio": "audio/qishou2-4.mp3"
+    },
+    {
+      "html": "现实数据有力地证实了这一判断。2017年，上海市公安局交警总队数据显示，平均每2.5天就有1名外卖骑手因违法伤亡。2018年，成都平均就有1个骑手因违法伤亡。#外卖骑手，已经成为最危险每天的职业之一#，这一话题已经不止一次地登上微博热搜。",
+      "audio": "audio/qishou2-5.mp3"
+    }
+  ],
+  "vocab": [
+    { "hz": "逆行", "py": "nì xíng", "en": "retrograde"},
+    { "hz": "粗略", "py": "cū lüè", "en": "rough" },
+    { "hz": "统计", "py": "tǒng jì", "en": "to count; to calculate" },
+    { "hz": "违章", "py": "wéi zhāng", "en": "violate traffic regulations"},
+    { "hz": "无法", "py": "wú fǎ", "en": "unable; incapable", "highlight": true },
+    { "hz": "个人", "py": "gè rén", "en": "individual; personal" },
+    { "hz": "对抗", "py": "duì kàng", "en": "to resist; to oppose" },
+    { "hz": "超速", "py": "chāo sù", "en": "overspeed"},
+    { "hz": "补救", "py": "bǔ jiù", "en": "to remedy"},
+    { "hz": "取餐", "py": "qǔ cān", "en": "to pick up meals" },
+    { "hz": "粗略", "py": "cūlüè", "en": "rough" },
+    { "hz": "闯红灯", "py": "chuǎng hóng dēng", "en": "run a red light"},
+    { "hz": "中国社科院", "py": "Zhōngguó Shè Kē Yuàn", "en": "Chinese Academy of Social Sciences" },
+    { "hz": "助理", "py": "zhù lǐ", "en": "assistant" },
+    { "hz": "举动", "py": "jǔ dòng", "en": "behavior" },
+    { "hz": "逆", "py": "nì", "en": "inverse; anti-" },
+    { "hz": "后果", "py": "hòu guǒ", "en": "consequence", "highlight": true },
+    { "hz": "遭遇", "py": "zāo yù", "en": "to encounter (bitter experience)", "highlight": true },
+    { "hz": "事故", "py": "shì gù", "en": "accident"},
+    { "hz": "数量", "py": "shù liàng", "en": "quantity", "highlight": true },
+    { "hz": "急剧", "py": "jí jù", "en": "sharp", "highlight": true },
+    { "hz": "谈及", "py": "tán jí", "en": "talking about" },
+    { "hz": "证实", "py": "zhèng shí", "en": "confirmation", "highlight": true },
+    { "hz": "判断", "py": "pàn duàn", "en": "judgement", "highlight": true  },
+    { "hz": "伤亡", "py": "shāng wáng", "en": "casualties" },
+    { "hz": "登上", "py": "dēng shàng", "en": "become" },
+    { "hz": "微博热搜", "py": "Wēi bó Rè Sōu", "en": "a trending topic on Weibo" },
+    { "hz": "个案", "py": "gè àn", "en": "individual cases", "highlight": true },
+    { "hz": "惊心动魄", "py": "jīng xīn dòng pò", "en": "thrilling and thrilling", "highlight": true },
+    { "hz": "急诊", "py": "jí zhěn", "en": "emergency" },
+    { "hz": "泰斗", "py": "tài dǒu", "en": "a leading authority" },
+    { "hz": "不幸", "py": "bú xìng", "en": "unfortunate", "highlight": true },
+    { "hz": "去世", "py": "qù shì", "en": "passed away" }
+  ]
+}

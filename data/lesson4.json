@@ -1,0 +1,66 @@
+{
+  "id": "lesson4",
+  "title": "外卖骑手，困在系统里（一）",
+  "title_audio": "audio/qishou-title.mp3",
+  "paragraphs": [
+    {
+      "html": "又有两分钟从系统里消失了。",
+      "audio": "audio/qishou-1.mp3"
+    },
+    {
+      "html": "饿了么骑手朱大鹤清晰地记得，那是2019年10月的某一天，当他看到一则订单的系统配送时间时，握着车把的手出汗了，“2公里，30分钟内送达”——他在北京跑外卖两年，此前相同距离的配送时间是32分钟，但从那一天起，那两分钟不见了。其他外卖骑手也有类似的经历。一位在重庆的美团骑手发现，相同距离的订单，配送时间从50分钟变成了35分钟。",
+      "audio": "audio/qishou-2.mp3"
+    },
+    {
+      "html": "这并不是第一次有时间从系统中消失。金壮壮做过三年的美团配送站站长，他记得2016年到2019年，他曾三次收到美团平台“加速”的通知：2016年，3公里送餐距离的最长时限是1小时，2017年变成了45分钟，2018年又缩短了7分钟，变为38分钟。据相关数据显示，2019年，中国全行业外卖订单平均配送时长比3年前减少了10分钟。",
+      "audio": "audio/qishou-3.mp3"
+    },
+    {
+      "html": "系统有能力接连不断地“吞掉”时间，对于缔造者来说，这是值得称颂的进步，是人工智能算法深度学习能力的体现。在美团，这个“实时智能配送系统”被称为“超脑”。",
+      "audio": "audio/qishou-4.mp3"
+    },
+    {
+      "html": "2016年11月，美团创始人王兴在接受媒体采访时表示：“我们的口号是‘美团外卖，送啥都快’，平均28分钟内到达。”他说，“这是一个很好的技术体现。”",
+      "audio": "audio/qishou-5.mp3"
+    },
+    {
+      "html": "而对于实践“技术进步”的外卖员而言，这却可能是“疯狂”且“要命”的。在系统的设置中，配送时间是最重要的指标，而超时是不被允许的，一旦发生，便意味着差评、收入降低，甚至被淘汰。外卖骑手都知道，“送外卖就是与死神赛跑，和交警较劲，和红灯做朋友。”",
+      "audio": "audio/qishou-6.mp3"
+    }
+  ],
+  "vocab": [
+    { "hz": "困", "py": "kùn", "en": "to be trapped" },
+    { "hz": "消失", "py": "xiāoshī", "en": "to disappear", "highlight": true },
+    { "hz": "清晰", "py": "qīngxī", "en": "clear", "highlight": true},
+    { "hz": "某", "py": "mǒu", "en": "certain", "highlight": true },
+    { "hz": "则", "py": "zé", "en": "a piece of (news, message, etc.)" },
+    { "hz": "订单", "py": "dìngdān", "en": "order for goods"},
+    { "hz": "配送", "py": "pèisòng", "en": "to deliver"},
+    { "hz": "车把", "py": "chēbǎ", "en": "handlebar" },
+    { "hz": "类似", "py": "lèisì", "en": "similar","highlight": true },
+    { "hz": "经历", "py": "jīnglì", "en": "experience (n./v.)","highlight": true },
+    { "hz": "时限", "py": "shíxiàn", "en": "time limit"},
+    { "hz": "缩短", "py": "suōduǎn", "en": "to shorten", "highlight": true },
+    { "hz": "相关", "py": "xiāngguān", "en": "relavant, related","highlight": true },
+    { "hz": "数据", "py": "shùjù", "en": "data","highlight": true },
+    { "hz": "显示", "py": "xiǎnshì", "en": "to indicate","highlight": true },
+    { "hz": "接连不断", "py": "jiēlián bùduàn", "en": "continuously","highlight": true },
+    { "hz": "吞掉", "py": "tūndiào", "en": "to swallow up" },
+    { "hz": "缔造", "py": "dìzào", "en": "to create"},
+    { "hz": "称颂", "py": "chēngsòng", "en": "to praise","highlight": true },
+    { "hz": "人工智能", "py": "réngōngzhìnéng", "en": "artificial intelligence" },
+    { "hz": "算法", "py": "suànfǎ", "en": "algorithm" },
+    { "hz": "体现", "py": "tǐxiàn", "en": "to reflect","highlight": true },
+    { "hz": "被称为", "py": "bèichēngwéi", "en": "to be called","highlight": true },
+    { "hz": "采访", "py": "cǎifǎng", "en": "media interview","highlight": true },
+    { "hz": "口号", "py": "kǒuhào", "en": "slogan","highlight": true },
+    { "hz": "意味着", "py": "yìwèizhe", "en": "to mean; to imply","highlight": true },
+    { "hz": "差评", "py": "chàpíng", "en": "negative review" },
+    { "hz": "收入", "py": "shōurù", "en": "income","highlight": true },
+    { "hz": "淘汰", "py": "táotài", "en": "to eliminate","highlight": true },
+    { "hz": "死神", "py": "sǐshén", "en": "death god" },
+    { "hz": "赛跑", "py": "sàipǎo", "en": "race" },
+    { "hz": "交警", "py": "jiāojǐng", "en": "traffic police" },
+    { "hz": "较劲", "py": "jiàojìn", "en": "to wrestle with" }
+  ]
+}

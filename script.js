@@ -68,12 +68,23 @@ function renderVocabTable(vocab) {
   const tbody = document.querySelector("#vocabTable tbody");
   if (!tbody) return;
   tbody.innerHTML = "";
+
   (vocab || []).forEach(row => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${row.hz || ""}</td><td>${row.py || ""}</td><td>${row.en || ""}</td>`;
+
+    // 如果这个词需要标红
+    const style = row.highlight ? 'style="color:#C62828; font-weight:600;"' : "";
+
+    tr.innerHTML = `
+      <td ${style}>${row.hz || ""}</td>
+      <td>${row.py || ""}</td>
+      <td>${row.en || ""}</td>
+    `;
+
     tbody.appendChild(tr);
   });
 }
+
 
 function renderTitle(data, fallbackId) {
   const titleEl = document.getElementById("title");
