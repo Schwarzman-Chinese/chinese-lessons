@@ -1,0 +1,37 @@
+{
+  "id": "lesson6",
+  "title": "外卖骑手，困在系统里（三）",
+  "title_audio": "audio/qishou3-title.mp3",
+  "paragraphs": [
+    {
+      "html": "在公开报道中，具体的个案远比数据更惊心动魄。2018年2月，一位饿了么骑手为赶时间在非机动车道上超速，撞倒上海急诊泰斗、华山医院急诊科创始人李谋秋，李谋秋抢救1个月之后不幸去世。2019年5月，江西一名外卖骑手因急着送外卖，撞上路人致其成植物人。一个月后，一名成都骑手闯红灯时撞上保时捷，右腿被当场撞飞……",
+      "audio": "audio/qishou3-1.mp3"
+    },
+    {
+      "html": "被配送时间“吓”得手心出汗的朱大鹤，也出过事儿。为了躲避一辆自行车，正在超速行使的他摔在了非机动车道上，正在配送的那份麻辣香锅也飞了出去。当时，比身体的疼痛更早一步抵达他大脑的是“糟糕，要超时了。”",
+      "audio": "audio/qishou3-2.mp3"
+    },
+    {
+      "html": "为了避免超时与差评，他打电话给顾客请求对方取消订单，自己掏钱买下了那份麻辣香锅，“太贵了，80多块，”他说，“但味道不错，吃撑了。”他至今对此耿耿于怀，因为他当时刚入行，经验不足，更合理的做法应该是，他将这份麻辣香锅的钱付给顾客，让他再下一单，这样，“至少能把这趟的配送费给我，”他说，“6块5，我记得很清楚。”",
+      "audio": "audio/qishou3-3.mp3"
+    }
+  ],
+  "vocab": [
+    { "hz": "个案", "py": "gè àn", "en": "individual cases", "highlight": true },
+    { "hz": "惊心动魄", "py": "jīng xīn dòng pò", "en": "thrilling and thrilling", "highlight": true },
+    { "hz": "急诊", "py": "jí zhěn", "en": "emergency" },
+    { "hz": "泰斗", "py": "tài dǒu", "en": "a leading authority" },
+    { "hz": "不幸", "py": "bù xìng", "en": "unfortunate", "highlight": true },
+    { "hz": "去世", "py": "qù shì", "en": "passed away" },
+    { "hz": "致", "py": "zhì", "en": "lead to (bitter result)" },
+    { "hz": "其", "py": "qí", "en": "他，她，or 它" },
+    { "hz": "植物人", "py": "zhí wù rén", "en": "vegetative state" },
+    { "hz": "非机动车", "py": "fēijīdòng chē", "en": "non motorized vehicle" },
+    { "hz": "车道", "py": "chē dào", "en": "lane" },
+    { "hz": "抵达", "py": "dǐ dá", "en": "arrival" },
+    { "hz": "取消", "py": "qǔ xiāo", "en": "cancel", "highlight": true },
+    { "hz": "吃撑了", "py": "chī chēng le", "en": "eat too much" },
+    { "hz": "耿耿于怀", "py": "gěng gěng yú huái", "en": "to be deeply ingrained in one's heart", "highlight": true },
+    { "hz": "趟", "py": "tàng", "en": "the measure word for a trip" }
+  ]
+}
